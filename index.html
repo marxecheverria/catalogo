@@ -8,6 +8,7 @@
     <!-- Preload de Google Fonts para mejor rendimiento -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
@@ -21,7 +22,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #667eea 50%, #764ba2 75%, #f093fb 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
@@ -220,6 +221,7 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+            contain: layout;
             border-radius: 10px;
         }
 
@@ -312,6 +314,13 @@
                 inset 0 1px 0 rgba(255,255,255,0.2);
             border: 1px solid rgba(255,255,255,0.2);
             color: #475569;
+            min-width: 120px;
+            text-align: center;
+            height: 48px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .zoom-modal {
@@ -821,9 +830,9 @@
             currentPageElement.classList.remove('active');
             
             // Mostrar nueva página
-            newPageElement.classList.add('active');
-            currentPage = newPage;
-            updateNavigation();
+                newPageElement.classList.add('active');
+                currentPage = newPage;
+                updateNavigation();
         }
 
         // Actualizar navegación

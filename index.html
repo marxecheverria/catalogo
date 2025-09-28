@@ -1087,6 +1087,13 @@
         const pageIndicator = document.getElementById('pageIndicator');
 
         // Inicializar
+        // Asegurar que la primera página esté visible
+        const firstPage = document.querySelector('[data-page="1"]');
+        if (firstPage) {
+            firstPage.classList.add('active');
+            firstPage.style.opacity = '1';
+            firstPage.style.transform = 'rotateY(0deg)';
+        }
         updateNavigation();
 
         // Navegación con botones
@@ -1113,9 +1120,15 @@
             currentPageElement.classList.remove('active');
             
             // Mostrar nueva página
-                newPageElement.classList.add('active');
-                currentPage = newPage;
-                updateNavigation();
+            newPageElement.classList.add('active');
+            currentPage = newPage;
+            updateNavigation();
+            
+            // Asegurar que la nueva página esté visible
+            setTimeout(() => {
+                newPageElement.style.opacity = '1';
+                newPageElement.style.transform = 'rotateY(0deg)';
+            }, 50);
         }
 
         // Actualizar navegación
@@ -1196,6 +1209,7 @@
                 // Swipe insuficiente - volver a la posición original
                 if (currentPageElement) {
                     currentPageElement.style.transform = 'rotateY(0deg)';
+                    currentPageElement.style.opacity = '1';
                 }
             }
             

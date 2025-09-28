@@ -148,7 +148,7 @@
         .product-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             border-radius: 10px;
         }
 
@@ -273,6 +273,7 @@
             max-width: 100%;
             max-height: 80vh;
             border-radius: 10px;
+            object-fit: contain;
         }
 
         .zoom-close {
@@ -365,28 +366,28 @@
             <!-- Página 1 -->
             <div class="page active" data-page="1">
                 <div class="page-content">
-                    <div class="product-card" onclick="openZoom('Samsung Galaxy S25', 'Estuche de silicona flexible y resistente con protección 360°')">
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy S25', 'Estuche de silicona flexible y resistente con protección 360°', 'imagenes/samsung-galaxy-s25.jpg')">
                         <div class="product-image">
                             <img src="imagenes/samsung-galaxy-s25.jpg" alt="Samsung Galaxy S25">
                         </div>
                         <div class="product-name">Samsung Galaxy S25</div>
                         <div class="product-description">Estuche de silicona flexible y resistente con protección 360°</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Samsung Galaxy S25 Ultra', 'Estuche premium con diseño ergonómico y agarre antideslizante')">
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy S25 Ultra', 'Estuche premium con diseño ergonómico y agarre antideslizante', 'imagenes/samsung-galaxy-s25-ultra.jpg')">
                         <div class="product-image">
                             <img src="imagenes/samsung-galaxy-s25-ultra.jpg" alt="Samsung Galaxy S25 Ultra">
                         </div>
                         <div class="product-name">Samsung Galaxy S25 Ultra</div>
                         <div class="product-description">Estuche premium con diseño ergonómico y agarre antideslizante</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Samsung Galaxy S25 Edge', 'Estuche transparente que resalta el diseño curvo del dispositivo')">
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy S25 Edge', 'Estuche transparente que resalta el diseño curvo del dispositivo', 'imagenes/samsung-galaxy-s25-edge.jpg')">
                         <div class="product-image">
                             <img src="imagenes/samsung-galaxy-s25-edge.jpg" alt="Samsung Galaxy S25 Edge">
                         </div>
                         <div class="product-name">Samsung Galaxy S25 Edge</div>
                         <div class="product-description">Estuche transparente que resalta el diseño curvo del dispositivo</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Samsung Galaxy S25 FE', 'Estuche económico con máxima protección y durabilidad')">
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy S25 FE', 'Estuche económico con máxima protección y durabilidad', 'imagenes/samsung-galaxy-s25-fe.jpg')">
                         <div class="product-image">
                             <img src="imagenes/samsung-galaxy-s25-fe.jpg" alt="Samsung Galaxy S25 FE">
                         </div>
@@ -400,28 +401,28 @@
             <!-- Página 2 -->
             <div class="page" data-page="2">
                 <div class="page-content">
-                    <div class="product-card" onclick="openZoom('Xiaomi 15 Ultra', 'Estuche de silicona de alta calidad con textura suave al tacto')">
+                    <div class="product-card" onclick="openZoom('Xiaomi 15 Ultra', 'Estuche de silicona de alta calidad con textura suave al tacto', 'imagenes/xiaomi-15-ultra.jpg')">
                         <div class="product-image">
                             <img src="imagenes/xiaomi-15-ultra.jpg" alt="Xiaomi 15 Ultra">
                         </div>
                         <div class="product-name">Xiaomi 15 Ultra</div>
                         <div class="product-description">Estuche de silicona de alta calidad con textura suave al tacto</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Xiaomi 15S Pro', 'Estuche resistente a impactos con bordes reforzados')">
+                    <div class="product-card" onclick="openZoom('Xiaomi 15S Pro', 'Estuche resistente a impactos con bordes reforzados', 'imagenes/xiaomi-15s-pro.jpg')">
                         <div class="product-image">
                             <img src="imagenes/xiaomi-15s-pro.jpg" alt="Xiaomi 15S Pro">
                         </div>
                         <div class="product-name">Xiaomi 15S Pro</div>
                         <div class="product-description">Estuche resistente a impactos con bordes reforzados</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Xiaomi 15 (estándar)', 'Estuche básico con protección esencial y diseño minimalista')">
+                    <div class="product-card" onclick="openZoom('Xiaomi 15 (estándar)', 'Estuche básico con protección esencial y diseño minimalista', 'imagenes/xiaomi-15-estandar.jpg')">
                         <div class="product-image">
                             <img src="imagenes/xiaomi-15-estandar.jpg" alt="Xiaomi 15 (estándar)">
                         </div>
                         <div class="product-name">Xiaomi 15 (estándar)</div>
                         <div class="product-description">Estuche básico con protección esencial y diseño minimalista</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Google Pixel 9a', 'Estuche ecológico fabricado con materiales reciclados')">
+                    <div class="product-card" onclick="openZoom('Google Pixel 9a', 'Estuche ecológico fabricado con materiales reciclados', 'imagenes/google-pixel-9a.jpg')">
                         <div class="product-image">
                             <img src="imagenes/google-pixel-9a.jpg" alt="Google Pixel 9a">
                         </div>
@@ -435,28 +436,28 @@
             <!-- Página 3 -->
             <div class="page" data-page="3">
                 <div class="page-content">
-                    <div class="product-card" onclick="openZoom('Huawei Pura 80 Ultra', 'Estuche premium con acabado mate y protección contra rayones')">
+                    <div class="product-card" onclick="openZoom('Huawei Pura 80 Ultra', 'Estuche premium con acabado mate y protección contra rayones', 'imagenes/huawei-pura-80-ultra.jpg')">
                         <div class="product-image">
                             <img src="imagenes/huawei-pura-80-ultra.jpg" alt="Huawei Pura 80 Ultra">
                         </div>
                         <div class="product-name">Huawei Pura 80 Ultra</div>
                         <div class="product-description">Estuche premium con acabado mate y protección contra rayones</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Asus Zenfone 12 Ultra', 'Estuche gaming con diseño agresivo y ventilación optimizada')">
+                    <div class="product-card" onclick="openZoom('Asus Zenfone 12 Ultra', 'Estuche gaming con diseño agresivo y ventilación optimizada', 'imagenes/asus-zenfone-12-ultra.jpg')">
                         <div class="product-image">
                             <img src="imagenes/asus-zenfone-12-ultra.jpg" alt="Asus Zenfone 12 Ultra">
                         </div>
                         <div class="product-name">Asus Zenfone 12 Ultra</div>
                         <div class="product-description">Estuche gaming con diseño agresivo y ventilación optimizada</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Samsung Galaxy Z Flip 7', 'Estuche especial para dispositivo plegable con bisagra protegida')">
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy Z Flip 7', 'Estuche especial para dispositivo plegable con bisagra protegida', 'imagenes/samsung-galaxy-z-flip-7.jpg')">
                         <div class="product-image">
                             <img src="imagenes/samsung-galaxy-z-flip-7.jpg" alt="Samsung Galaxy Z Flip 7">
                         </div>
                         <div class="product-name">Samsung Galaxy Z Flip 7</div>
                         <div class="product-description">Estuche especial para dispositivo plegable con bisagra protegida</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('iQOO Z10', 'Estuche deportivo con agarre mejorado para uso intensivo')">
+                    <div class="product-card" onclick="openZoom('iQOO Z10', 'Estuche deportivo con agarre mejorado para uso intensivo', 'imagenes/iqoo-z10.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iqoo-z10.jpg" alt="iQOO Z10">
                         </div>
@@ -470,28 +471,28 @@
             <!-- Página 4 -->
             <div class="page" data-page="4">
                 <div class="page-content">
-                    <div class="product-card" onclick="openZoom('Samsung Galaxy A26 5G', 'Estuche accesible con protección completa y diseño moderno')">
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy A26 5G', 'Estuche accesible con protección completa y diseño moderno', 'imagenes/samsung-galaxy-a26-5g.jpg')">
                         <div class="product-image">
                             <img src="imagenes/samsung-galaxy-a26-5g.jpg" alt="Samsung Galaxy A26 5G">
                         </div>
                         <div class="product-name">Samsung Galaxy A26 5G</div>
                         <div class="product-description">Estuche accesible con protección completa y diseño moderno</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Apple iPhone 17', 'Estuche elegante con compatibilidad MagSafe y carga inalámbrica')">
+                    <div class="product-card" onclick="openZoom('Apple iPhone 17', 'Estuche elegante con compatibilidad MagSafe y carga inalámbrica', 'imagenes/apple-iphone-17.jpg')">
                         <div class="product-image">
                             <img src="imagenes/apple-iphone-17.jpg" alt="Apple iPhone 17">
                         </div>
                         <div class="product-name">Apple iPhone 17</div>
                         <div class="product-description">Estuche elegante con compatibilidad MagSafe y carga inalámbrica</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Xiaomi 15T Pro', 'Estuche profesional con textura de cuero sintético')">
+                    <div class="product-card" onclick="openZoom('Xiaomi 15T Pro', 'Estuche profesional con textura de cuero sintético', 'imagenes/xiaomi-15t-pro.jpg')">
                         <div class="product-image">
                             <img src="imagenes/xiaomi-15t-pro.jpg" alt="Xiaomi 15T Pro">
                         </div>
                         <div class="product-name">Xiaomi 15T Pro</div>
                         <div class="product-description">Estuche profesional con textura de cuero sintético</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Xiaomi 15T', 'Estuche estándar con balance perfecto entre protección y estilo')">
+                    <div class="product-card" onclick="openZoom('Xiaomi 15T', 'Estuche estándar con balance perfecto entre protección y estilo', 'imagenes/xiaomi-15t.jpg')">
                         <div class="product-image">
                             <img src="imagenes/xiaomi-15t.jpg" alt="Xiaomi 15T">
                         </div>
@@ -505,28 +506,28 @@
             <!-- Página 5 -->
             <div class="page" data-page="5">
                 <div class="page-content">
-                    <div class="product-card" onclick="openZoom('Huawei Pura 80 Pro+', 'Estuche flagship con materiales premium y acabado de lujo')">
+                    <div class="product-card" onclick="openZoom('Huawei Pura 80 Pro+', 'Estuche flagship con materiales premium y acabado de lujo', 'imagenes/huawei-pura-80-pro-plus.jpg')">
                         <div class="product-image">
                             <img src="imagenes/huawei-pura-80-pro-plus.jpg" alt="Huawei Pura 80 Pro+">
                         </div>
                         <div class="product-name">Huawei Pura 80 Pro+</div>
                         <div class="product-description">Estuche flagship con materiales premium y acabado de lujo</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Huawei Pura 80 Pro', 'Estuche avanzado con tecnología de disipación de calor')">
+                    <div class="product-card" onclick="openZoom('Huawei Pura 80 Pro', 'Estuche avanzado con tecnología de disipación de calor', 'imagenes/huawei-pura-80-pro.jpg')">
                         <div class="product-image">
                             <img src="imagenes/huawei-pura-80-pro.jpg" alt="Huawei Pura 80 Pro">
                         </div>
                         <div class="product-name">Huawei Pura 80 Pro</div>
                         <div class="product-description">Estuche avanzado con tecnología de disipación de calor</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Huawei Pura 80 (versión base)', 'Estuche básico con protección fundamental y precio competitivo')">
+                    <div class="product-card" onclick="openZoom('Huawei Pura 80 (versión base)', 'Estuche básico con protección fundamental y precio competitivo', 'imagenes/huawei-pura-80-base.jpg')">
                         <div class="product-image">
                             <img src="imagenes/huawei-pura-80-base.jpg" alt="Huawei Pura 80 (versión base)">
                         </div>
                         <div class="product-name">Huawei Pura 80 (versión base)</div>
                         <div class="product-description">Estuche básico con protección fundamental y precio competitivo</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Samsung Galaxy A55 5G', 'Estuche premium con diseño elegante y máxima protección para uso diario')">
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy A55 5G', 'Estuche premium con diseño elegante y máxima protección para uso diario', 'imagenes/samsung-galaxy-a55-5g.jpg')">
                         <div class="product-image">
                             <img src="imagenes/samsung-galaxy-a55-5g.jpg" alt="Samsung Galaxy A55 5G">
                         </div>
@@ -540,28 +541,28 @@
             <!-- Página 6 -->
             <div class="page" data-page="6">
                 <div class="page-content">
-                    <div class="product-card" onclick="openZoom('iPhone 7/8 PLUS', 'Estuche clásico con diseño tradicional y máxima compatibilidad')">
+                    <div class="product-card" onclick="openZoom('iPhone 7/8 PLUS', 'Estuche clásico con diseño tradicional y máxima compatibilidad', 'imagenes/iphone-7-8-plus.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-7-8-plus.jpg" alt="iPhone 7/8 PLUS">
                         </div>
                         <div class="product-name">iPhone 7/8 PLUS</div>
                         <div class="product-description">Estuche clásico con diseño tradicional y máxima compatibilidad</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('iPhone XR', 'Estuche moderno con diseño sin bordes y protección completa')">
+                    <div class="product-card" onclick="openZoom('iPhone XR', 'Estuche moderno con diseño sin bordes y protección completa', 'imagenes/iphone-xr.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-xr.jpg" alt="iPhone XR">
                         </div>
                         <div class="product-name">iPhone XR</div>
                         <div class="product-description">Estuche moderno con diseño sin bordes y protección completa</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('iPhone 11 mini', 'Estuche compacto perfecto para dispositivos pequeños')">
+                    <div class="product-card" onclick="openZoom('iPhone 11 mini', 'Estuche compacto perfecto para dispositivos pequeños', 'imagenes/iphone-11-mini.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-11-mini.jpg" alt="iPhone 11 mini">
                         </div>
                         <div class="product-name">iPhone 11 mini</div>
                         <div class="product-description">Estuche compacto perfecto para dispositivos pequeños</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('iPhone 11 PRO MAX', 'Estuche premium para el modelo más grande con máxima protección')">
+                    <div class="product-card" onclick="openZoom('iPhone 11 PRO MAX', 'Estuche premium para el modelo más grande con máxima protección', 'imagenes/iphone-11-pro-max.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-11-pro-max.jpg" alt="iPhone 11 PRO MAX">
                         </div>
@@ -575,28 +576,28 @@
             <!-- Página 7 -->
             <div class="page" data-page="7">
                 <div class="page-content">
-                    <div class="product-card" onclick="openZoom('iPhone 12 PRO', 'Estuche profesional con diseño elegante y acabado premium')">
+                    <div class="product-card" onclick="openZoom('iPhone 12 PRO', 'Estuche profesional con diseño elegante y acabado premium', 'imagenes/iphone-12-pro.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-12-pro.jpg" alt="iPhone 12 PRO">
                         </div>
                         <div class="product-name">iPhone 12 PRO</div>
                         <div class="product-description">Estuche profesional con diseño elegante y acabado premium</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('iPhone 12 PRO MAX', 'Estuche máximo con protección superior y diseño sofisticado')">
+                    <div class="product-card" onclick="openZoom('iPhone 12 PRO MAX', 'Estuche máximo con protección superior y diseño sofisticado', 'imagenes/iphone-12-pro-max.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-12-pro-max.jpg" alt="iPhone 12 PRO MAX">
                         </div>
                         <div class="product-name">iPhone 12 PRO MAX</div>
                         <div class="product-description">Estuche máximo con protección superior y diseño sofisticado</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('iPhone 13', 'Estuche moderno con tecnología avanzada y diseño actualizado')">
+                    <div class="product-card" onclick="openZoom('iPhone 13', 'Estuche moderno con tecnología avanzada y diseño actualizado', 'imagenes/iphone-13.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-13.jpg" alt="iPhone 13">
                         </div>
                         <div class="product-name">iPhone 13</div>
                         <div class="product-description">Estuche moderno con tecnología avanzada y diseño actualizado</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('iPhone 13 PRO MAX', 'Estuche premium con características avanzadas y máxima durabilidad')">
+                    <div class="product-card" onclick="openZoom('iPhone 13 PRO MAX', 'Estuche premium con características avanzadas y máxima durabilidad', 'imagenes/iphone-13-pro-max.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-13-pro-max.jpg" alt="iPhone 13 PRO MAX">
                         </div>
@@ -610,28 +611,28 @@
             <!-- Página 8 -->
             <div class="page" data-page="8">
                 <div class="page-content">
-                    <div class="product-card" onclick="openZoom('iPhone 14', 'Estuche contemporáneo con diseño actual y protección mejorada')">
+                    <div class="product-card" onclick="openZoom('iPhone 14', 'Estuche contemporáneo con diseño actual y protección mejorada', 'imagenes/iphone-14.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-14.jpg" alt="iPhone 14">
                         </div>
                         <div class="product-name">iPhone 14</div>
                         <div class="product-description">Estuche contemporáneo con diseño actual y protección mejorada</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('iPhone 14 PRO', 'Estuche profesional con características premium y acabado de lujo')">
+                    <div class="product-card" onclick="openZoom('iPhone 14 PRO', 'Estuche profesional con características premium y acabado de lujo', 'imagenes/iphone-14-pro.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-14-pro.jpg" alt="iPhone 14 PRO">
                         </div>
                         <div class="product-name">iPhone 14 PRO</div>
                         <div class="product-description">Estuche profesional con características premium y acabado de lujo</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('iPhone 14 PRO MAX', 'Estuche máximo con protección superior y diseño exclusivo')">
+                    <div class="product-card" onclick="openZoom('iPhone 14 PRO MAX', 'Estuche máximo con protección superior y diseño exclusivo', 'imagenes/iphone-14-pro-max.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-14-pro-max.jpg" alt="iPhone 14 PRO MAX">
                         </div>
                         <div class="product-name">iPhone 14 PRO MAX</div>
                         <div class="product-description">Estuche máximo con protección superior y diseño exclusivo</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('iPhone 15', 'Estuche moderno con tecnología de última generación')">
+                    <div class="product-card" onclick="openZoom('iPhone 15', 'Estuche moderno con tecnología de última generación', 'imagenes/iphone-15.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-15.jpg" alt="iPhone 15">
                         </div>
@@ -645,28 +646,28 @@
             <!-- Página 9 -->
             <div class="page" data-page="9">
                 <div class="page-content">
-                    <div class="product-card" onclick="openZoom('iPhone 15 PRO', 'Estuche profesional con características avanzadas y diseño premium')">
+                    <div class="product-card" onclick="openZoom('iPhone 15 PRO', 'Estuche profesional con características avanzadas y diseño premium', 'imagenes/iphone-15-pro.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-15-pro.jpg" alt="iPhone 15 PRO">
                         </div>
                         <div class="product-name">iPhone 15 PRO</div>
                         <div class="product-description">Estuche profesional con características avanzadas y diseño premium</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('iPhone 15 PRO MAX', 'Estuche flagship con máxima protección y acabado de lujo')">
+                    <div class="product-card" onclick="openZoom('iPhone 15 PRO MAX', 'Estuche flagship con máxima protección y acabado de lujo', 'imagenes/iphone-15-pro-max.jpg')">
                         <div class="product-image">
                             <img src="imagenes/iphone-15-pro-max.jpg" alt="iPhone 15 PRO MAX">
                         </div>
                         <div class="product-name">iPhone 15 PRO MAX</div>
                         <div class="product-description">Estuche flagship con máxima protección y acabado de lujo</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Samsung Galaxy A35 5G', 'Estuche accesible con protección completa y diseño moderno para uso diario')">
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy A35 5G', 'Estuche accesible con protección completa y diseño moderno para uso diario', 'imagenes/samsung-galaxy-a35-5g.jpg')">
                         <div class="product-image">
                             <img src="imagenes/samsung-galaxy-a35-5g.jpg" alt="Samsung Galaxy A35 5G">
                         </div>
                         <div class="product-name">Samsung Galaxy A35 5G</div>
                         <div class="product-description">Estuche accesible con protección completa y diseño moderno para uso diario</div>
                     </div>
-                    <div class="product-card" onclick="openZoom('Samsung Galaxy A15 5G', 'Estuche económico con protección básica y diseño funcional')">
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy A15 5G', 'Estuche económico con protección básica y diseño funcional', 'imagenes/samsung-galaxy-a15-5g.jpg')">
                         <div class="product-image">
                             <img src="imagenes/samsung-galaxy-a15-5g.jpg" alt="Samsung Galaxy A15 5G">
                         </div>
@@ -693,7 +694,7 @@
         <div class="zoom-content" onclick="event.stopPropagation()">
             <button class="zoom-close" onclick="closeZoom()">×</button>
             <div class="product-image" style="height: 300px; margin-bottom: 20px;">
-                <div style="font-size: 48px;">📱</div>
+                <img class="zoom-image" src="" alt="" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
             <div class="zoom-info">
                 <h3 id="zoomTitle"></h3>
@@ -848,9 +849,17 @@
         });
 
         // Modal de zoom
-        function openZoom(name, description) {
+        function openZoom(name, description, imageSrc) {
             document.getElementById('zoomTitle').textContent = name;
             document.getElementById('zoomDescription').textContent = description;
+            
+            // Actualizar la imagen en el modal
+            const zoomImage = document.querySelector('.zoom-image');
+            if (zoomImage) {
+                zoomImage.src = imageSrc;
+                zoomImage.alt = name;
+            }
+            
             document.getElementById('zoomModal').style.display = 'flex';
         }
 

@@ -95,36 +95,45 @@
                 overflow: hidden;
             }
             .page {
-                padding: 10px 15px 20px 15px;
+                padding: 8px 10px 15px 10px;
                 overflow: hidden;
             }
             .page-content {
-                gap: 15px;
-                padding: 5px;
+                gap: 12px;
+                padding: 0;
                 height: 100%;
                 overflow: hidden;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
             }
             .product-card {
-                padding: 12px;
-                height: 420px;
+                padding: 8px;
+                height: auto;
+                min-height: 0;
                 overflow: hidden;
                 display: flex;
                 flex-direction: column;
+                aspect-ratio: 0.8;
             }
             .product-image {
-                height: 280px;
+                height: 75%;
                 flex-shrink: 0;
+                margin-bottom: 6px;
             }
             .product-name {
-                font-size: 14px;
-                margin: 8px 0 4px 0;
+                font-size: 12px;
+                margin: 4px 0 2px 0;
                 flex-shrink: 0;
+                line-height: 1.2;
             }
             .product-description {
-                font-size: 11px;
-                line-height: 1.3;
+                font-size: 10px;
+                line-height: 1.2;
                 flex: 1;
                 overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
             }
             .page-indicator {
                 top: 20px;
@@ -167,36 +176,45 @@
                 overflow: hidden;
             }
             .page {
-                padding: 15px 20px 25px 20px;
+                padding: 12px 15px 20px 15px;
                 overflow: hidden;
             }
             .page-content {
-                gap: 18px;
-                padding: 8px;
+                gap: 15px;
+                padding: 0;
                 height: 100%;
                 overflow: hidden;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
             }
             .product-card {
-                padding: 16px;
-                height: 450px;
+                padding: 12px;
+                height: auto;
+                min-height: 0;
                 overflow: hidden;
                 display: flex;
                 flex-direction: column;
+                aspect-ratio: 0.85;
             }
             .product-image {
-                height: 300px;
+                height: 70%;
                 flex-shrink: 0;
+                margin-bottom: 8px;
             }
             .product-name {
-                font-size: 15px;
-                margin: 10px 0 5px 0;
+                font-size: 14px;
+                margin: 6px 0 3px 0;
                 flex-shrink: 0;
+                line-height: 1.3;
             }
             .product-description {
-                font-size: 12px;
-                line-height: 1.4;
+                font-size: 11px;
+                line-height: 1.3;
                 flex: 1;
                 overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 4;
+                -webkit-box-orient: vertical;
             }
             .page-indicator {
                 top: 25px;

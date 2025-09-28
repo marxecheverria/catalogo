@@ -116,6 +116,13 @@
             transform-origin: left center;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: rotateY(180deg);
+        }
+
+        .page.active {
+            opacity: 1;
+            transform: rotateY(0deg);
         }
 
         .page.flipping {
@@ -801,19 +808,13 @@
             
             if (!currentPageElement || !newPageElement) return;
             
-            // Ocultar página actual con efecto de hoja
-            currentPageElement.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            currentPageElement.style.transform = 'rotateY(-180deg)';
+            // Ocultar página actual
             currentPageElement.classList.remove('active');
             
             // Mostrar nueva página
-            setTimeout(() => {
-                newPageElement.classList.add('active');
-                newPageElement.style.transform = 'rotateY(0deg)';
-                currentPageElement.style.transform = 'rotateY(0deg)';
-                currentPage = newPage;
-                updateNavigation();
-            }, 300);
+            newPageElement.classList.add('active');
+            currentPage = newPage;
+            updateNavigation();
         }
 
         // Actualizar navegación

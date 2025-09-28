@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Estuches de Silicona</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #667eea 50%, #764ba2 75%, #f093fb 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            overflow: hidden;
+            height: 100vh;
+            user-select: none;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .catalog-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            perspective: 1000px;
+        }
+
+        .catalog-book {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 20px;
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.15),
+                0 0 0 1px rgba(255,255,255,0.05),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            backface-visibility: hidden;
+            transform-origin: left center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .page.flipping {
+            transform: rotateY(-180deg);
+        }
+
+        .page-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+            height: 100%;
+            padding: 10px;
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 
+                0 10px 25px rgba(0,0,0,0.08),
+                0 4px 10px rgba(0,0,0,0.05),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .product-card:hover::before {
+            left: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.15),
+                0 8px 20px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 140px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            border-radius: 16px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 8px 20px rgba(102, 126, 234, 0.3),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #1e293b;
+            margin-bottom: 8px;
+            letter-spacing: -0.025em;
+        }
+
+        .product-description {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 13px;
+            color: #94a3b8;
+            font-weight: 500;
+            background: rgba(255,255,255,0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95));
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 
+                0 8px 25px rgba(0,0,0,0.15),
+                0 4px 12px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            color: #475569;
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 
+                0 12px 35px rgba(0,0,0,0.2),
+                0 6px 18px rgba(0,0,0,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+            color: #334155;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .page-indicator {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95));
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 8px 25px rgba(0,0,0,0.15),
+                0 4px 12px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #475569;
+        }
+
+        .zoom-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .zoom-content {
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+        }
+
+        .zoom-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+
+        .zoom-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95));
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 22px;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 8px 25px rgba(0,0,0,0.15),
+                0 4px 12px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #475569;
+        }
+
+        .zoom-close:hover {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            transform: scale(1.1);
+            color: #334155;
+        }
+
+        .zoom-info {
+            color: white;
+            margin-top: 20px;
+        }
+
+        .zoom-info h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -0.025em;
+        }
+
+        .zoom-info p {
+            font-size: 18px;
+            opacity: 0.9;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .page-content {
+                gap: 15px;
+                padding: 5px;
+            }
+            
+            .product-card {
+                padding: 10px;
+            }
+            
+            .product-image {
+                height: 100px;
+            }
+            
+            .product-name {
+                font-size: 12px;
+            }
+            
+            .product-description {
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-content {
+                gap: 10px;
+            }
+            
+            .product-card {
+                padding: 8px;
+            }
+            
+            .product-image {
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="catalog-container">
+        <div class="catalog-book" id="catalogBook">
+            <!-- Página 1 -->
+            <div class="page active" data-page="1">
+                <div class="page-content">
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy S25', 'Estuche de silicona flexible y resistente con protección 360°')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Samsung Galaxy S25</div>
+                        <div class="product-description">Estuche de silicona flexible y resistente con protección 360°</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy S25 Ultra', 'Estuche premium con diseño ergonómico y agarre antideslizante')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Samsung Galaxy S25 Ultra</div>
+                        <div class="product-description">Estuche premium con diseño ergonómico y agarre antideslizante</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy S25 Edge', 'Estuche transparente que resalta el diseño curvo del dispositivo')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Samsung Galaxy S25 Edge</div>
+                        <div class="product-description">Estuche transparente que resalta el diseño curvo del dispositivo</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy S25 FE', 'Estuche económico con máxima protección y durabilidad')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Samsung Galaxy S25 FE</div>
+                        <div class="product-description">Estuche económico con máxima protección y durabilidad</div>
+                    </div>
+                </div>
+                <div class="page-number">Página 1 de 5</div>
+            </div>
+
+            <!-- Página 2 -->
+            <div class="page" data-page="2">
+                <div class="page-content">
+                    <div class="product-card" onclick="openZoom('Xiaomi 15 Ultra', 'Estuche de silicona de alta calidad con textura suave al tacto')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Xiaomi 15 Ultra</div>
+                        <div class="product-description">Estuche de silicona de alta calidad con textura suave al tacto</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('Xiaomi 15S Pro', 'Estuche resistente a impactos con bordes reforzados')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Xiaomi 15S Pro</div>
+                        <div class="product-description">Estuche resistente a impactos con bordes reforzados</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('Xiaomi 15 (estándar)', 'Estuche básico con protección esencial y diseño minimalista')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Xiaomi 15 (estándar)</div>
+                        <div class="product-description">Estuche básico con protección esencial y diseño minimalista</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('Google Pixel 9a', 'Estuche ecológico fabricado con materiales reciclados')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Google Pixel 9a</div>
+                        <div class="product-description">Estuche ecológico fabricado con materiales reciclados</div>
+                    </div>
+                </div>
+                <div class="page-number">Página 2 de 5</div>
+            </div>
+
+            <!-- Página 3 -->
+            <div class="page" data-page="3">
+                <div class="page-content">
+                    <div class="product-card" onclick="openZoom('Huawei Pura 80 Ultra', 'Estuche premium con acabado mate y protección contra rayones')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Huawei Pura 80 Ultra</div>
+                        <div class="product-description">Estuche premium con acabado mate y protección contra rayones</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('Asus Zenfone 12 Ultra', 'Estuche gaming con diseño agresivo y ventilación optimizada')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Asus Zenfone 12 Ultra</div>
+                        <div class="product-description">Estuche gaming con diseño agresivo y ventilación optimizada</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy Z Flip 7', 'Estuche especial para dispositivo plegable con bisagra protegida')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Samsung Galaxy Z Flip 7</div>
+                        <div class="product-description">Estuche especial para dispositivo plegable con bisagra protegida</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('iQOO Z10', 'Estuche deportivo con agarre mejorado para uso intensivo')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">iQOO Z10</div>
+                        <div class="product-description">Estuche deportivo con agarre mejorado para uso intensivo</div>
+                    </div>
+                </div>
+                <div class="page-number">Página 3 de 5</div>
+            </div>
+
+            <!-- Página 4 -->
+            <div class="page" data-page="4">
+                <div class="page-content">
+                    <div class="product-card" onclick="openZoom('Samsung Galaxy A26 5G', 'Estuche accesible con protección completa y diseño moderno')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Samsung Galaxy A26 5G</div>
+                        <div class="product-description">Estuche accesible con protección completa y diseño moderno</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('Apple iPhone 17', 'Estuche elegante con compatibilidad MagSafe y carga inalámbrica')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Apple iPhone 17</div>
+                        <div class="product-description">Estuche elegante con compatibilidad MagSafe y carga inalámbrica</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('Xiaomi 15T Pro', 'Estuche profesional con textura de cuero sintético')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Xiaomi 15T Pro</div>
+                        <div class="product-description">Estuche profesional con textura de cuero sintético</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('Xiaomi 15T', 'Estuche estándar con balance perfecto entre protección y estilo')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Xiaomi 15T</div>
+                        <div class="product-description">Estuche estándar con balance perfecto entre protección y estilo</div>
+                    </div>
+                </div>
+                <div class="page-number">Página 4 de 5</div>
+            </div>
+
+            <!-- Página 5 -->
+            <div class="page" data-page="5">
+                <div class="page-content">
+                    <div class="product-card" onclick="openZoom('Huawei Pura 80 Pro+', 'Estuche flagship con materiales premium y acabado de lujo')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Huawei Pura 80 Pro+</div>
+                        <div class="product-description">Estuche flagship con materiales premium y acabado de lujo</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('Huawei Pura 80 Pro', 'Estuche avanzado con tecnología de disipación de calor')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Huawei Pura 80 Pro</div>
+                        <div class="product-description">Estuche avanzado con tecnología de disipación de calor</div>
+                    </div>
+                    <div class="product-card" onclick="openZoom('Huawei Pura 80 (versión base)', 'Estuche básico con protección fundamental y precio competitivo')">
+                        <div class="product-image">
+                            <div>📱 Imagen del estuche</div>
+                        </div>
+                        <div class="product-name">Huawei Pura 80 (versión base)</div>
+                        <div class="product-description">Estuche básico con protección fundamental y precio competitivo</div>
+                    </div>
+                    <div class="product-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); color: white; display: flex; align-items: center; justify-content: center; flex-direction: column; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><pattern id=\"stars\" width=\"100\" height=\"100\" patternUnits=\"userSpaceOnUse\"><circle cx=\"20\" cy=\"20\" r=\"1\" fill=\"rgba(255,255,255,0.3)\"/><circle cx=\"80\" cy=\"30\" r=\"0.5\" fill=\"rgba(255,255,255,0.2)\"/><circle cx=\"40\" cy=\"70\" r=\"0.8\" fill=\"rgba(255,255,255,0.25)\"/><circle cx=\"90\" cy=\"80\" r=\"0.6\" fill=\"rgba(255,255,255,0.2)\"/><circle cx=\"10\" cy=\"90\" r=\"0.4\" fill=\"rgba(255,255,255,0.15)\"/></pattern></defs><rect width=\"100\" height=\"100\" fill=\"url(%23stars)\"/></svg>'); opacity: 0.6;"></div>
+                        <div style="font-size: 64px; margin-bottom: 25px; position: relative; z-index: 1;">📚</div>
+                        <div style="font-size: 22px; font-weight: 700; margin-bottom: 15px; position: relative; z-index: 1; letter-spacing: -0.025em;">Fin del Catálogo</div>
+                        <div style="font-size: 16px; text-align: center; opacity: 0.95; line-height: 1.5; position: relative; z-index: 1; font-weight: 400;">Gracias por revisar nuestra colección premium de estuches de silicona</div>
+                    </div>
+                </div>
+                <div class="page-number">Página 5 de 5</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navegación -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="previousPage()">‹</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextPage()">›</button>
+    </div>
+
+    <!-- Indicador de página -->
+    <div class="page-indicator" id="pageIndicator">Página 1 de 5</div>
+
+    <!-- Modal de zoom -->
+    <div class="zoom-modal" id="zoomModal" onclick="closeZoom()">
+        <div class="zoom-content" onclick="event.stopPropagation()">
+            <button class="zoom-close" onclick="closeZoom()">×</button>
+            <div class="product-image" style="height: 300px; margin-bottom: 20px;">
+                <div style="font-size: 48px;">📱</div>
+            </div>
+            <div class="zoom-info">
+                <h3 id="zoomTitle"></h3>
+                <p id="zoomDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 5;
+        const pages = document.querySelectorAll('.page');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageIndicator = document.getElementById('pageIndicator');
+
+        // Inicializar
+        updateNavigation();
+
+        // Navegación con botones
+        function nextPage() {
+            if (currentPage < totalPages) {
+                flipPage(currentPage + 1);
+            }
+        }
+
+        function previousPage() {
+            if (currentPage > 1) {
+                flipPage(currentPage - 1);
+            }
+        }
+
+        // Efecto de flip
+        function flipPage(newPage) {
+            const currentPageElement = document.querySelector(`[data-page="${currentPage}"]`);
+            const newPageElement = document.querySelector(`[data-page="${newPage}"]`);
+            
+            // Ocultar página actual
+            currentPageElement.classList.remove('active');
+            currentPageElement.classList.add('flipping');
+            
+            // Mostrar nueva página
+            setTimeout(() => {
+                newPageElement.classList.add('active');
+                newPageElement.classList.remove('flipping');
+                currentPageElement.classList.remove('flipping');
+                currentPage = newPage;
+                updateNavigation();
+            }, 300);
+        }
+
+        // Actualizar navegación
+        function updateNavigation() {
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+            pageIndicator.textContent = `Página ${currentPage} de ${totalPages}`;
+        }
+
+        // Navegación táctil
+        let startX = 0;
+        let startY = 0;
+        let isScrolling = false;
+
+        document.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isScrolling = false;
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!startX || !startY) return;
+            
+            const diffX = startX - e.touches[0].clientX;
+            const diffY = startY - e.touches[0].clientY;
+            
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                isScrolling = true;
+            }
+        });
+
+        document.addEventListener('touchend', (e) => {
+            if (!startX || !startY || isScrolling) return;
+            
+            const diffX = startX - e.changedTouches[0].clientX;
+            const minSwipeDistance = 50;
+            
+            if (Math.abs(diffX) > minSwipeDistance) {
+                if (diffX > 0 && currentPage < totalPages) {
+                    // Swipe izquierda - siguiente página
+                    nextPage();
+                } else if (diffX < 0 && currentPage > 1) {
+                    // Swipe derecha - página anterior
+                    previousPage();
+                }
+            }
+            
+            startX = 0;
+            startY = 0;
+            isScrolling = false;
+        });
+
+        // Navegación con teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && currentPage > 1) {
+                previousPage();
+            } else if (e.key === 'ArrowRight' && currentPage < totalPages) {
+                nextPage();
+            }
+        });
+
+        // Modal de zoom
+        function openZoom(name, description) {
+            document.getElementById('zoomTitle').textContent = name;
+            document.getElementById('zoomDescription').textContent = description;
+            document.getElementById('zoomModal').style.display = 'flex';
+        }
+
+        function closeZoom() {
+            document.getElementById('zoomModal').style.display = 'none';
+        }
+
+        // Prevenir zoom accidental en dispositivos móviles
+        document.addEventListener('gesturestart', (e) => {
+            e.preventDefault();
+        });
+
+        // Optimización para dispositivos móviles
+        if ('ontouchstart' in window) {
+            document.body.style.touchAction = 'pan-x';
+        }
+    </script>
+</body>
+</html>

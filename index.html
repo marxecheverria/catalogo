@@ -586,20 +586,23 @@
             }
         }
 
-        // Efecto de flip
+        // Efecto de flip mejorado
         function flipPage(newPage) {
             const currentPageElement = document.querySelector(`[data-page="${currentPage}"]`);
             const newPageElement = document.querySelector(`[data-page="${newPage}"]`);
             
-            // Ocultar página actual
+            if (!currentPageElement || !newPageElement) return;
+            
+            // Ocultar página actual con efecto de hoja
+            currentPageElement.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            currentPageElement.style.transform = 'rotateY(-180deg)';
             currentPageElement.classList.remove('active');
-            currentPageElement.classList.add('flipping');
             
             // Mostrar nueva página
             setTimeout(() => {
                 newPageElement.classList.add('active');
-                newPageElement.classList.remove('flipping');
-                currentPageElement.classList.remove('flipping');
+                newPageElement.style.transform = 'rotateY(0deg)';
+                currentPageElement.style.transform = 'rotateY(0deg)';
                 currentPage = newPage;
                 updateNavigation();
             }, 300);
@@ -612,35 +615,66 @@
             pageIndicator.textContent = `Página ${currentPage} de ${totalPages}`;
         }
 
-        // Navegación táctil
+        // Navegación táctil mejorada
         let startX = 0;
         let startY = 0;
         let isScrolling = false;
+        let isDragging = false;
+        let currentPageElement = null;
+        let nextPageElement = null;
+        let dragDirection = 0;
 
         document.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
             startY = e.touches[0].clientY;
             isScrolling = false;
-        });
+            isDragging = false;
+            currentPageElement = document.querySelector(`[data-page="${currentPage}"]`);
+        }, { passive: true });
 
         document.addEventListener('touchmove', (e) => {
             if (!startX || !startY) return;
             
-            const diffX = startX - e.touches[0].clientX;
-            const diffY = startY - e.touches[0].clientY;
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = startX - currentX;
+            const diffY = startY - currentY;
             
-            if (Math.abs(diffX) > Math.abs(diffY)) {
+            // Determinar si es un deslizamiento horizontal
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+                e.preventDefault();
+                isDragging = true;
+                isScrolling = false;
+                
+                // Calcular dirección y porcentaje de deslizamiento
+                const swipePercentage = Math.min(Math.abs(diffX) / 150, 1);
+                dragDirection = diffX > 0 ? 1 : -1;
+                
+                // Aplicar transformación en tiempo real
+                if (currentPageElement) {
+                    const rotation = dragDirection * swipePercentage * 180;
+                    currentPageElement.style.transform = `rotateY(${rotation}deg)`;
+                    currentPageElement.style.transition = 'none';
+                }
+            } else if (Math.abs(diffY) > Math.abs(diffX)) {
                 isScrolling = true;
             }
-        });
+        }, { passive: false });
 
         document.addEventListener('touchend', (e) => {
-            if (!startX || !startY || isScrolling) return;
+            if (!startX || !startY) return;
             
             const diffX = startX - e.changedTouches[0].clientX;
-            const minSwipeDistance = 50;
+            const minSwipeDistance = 80;
+            const swipePercentage = Math.abs(diffX) / 150;
             
-            if (Math.abs(diffX) > minSwipeDistance) {
+            // Restaurar transformación
+            if (currentPageElement) {
+                currentPageElement.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            }
+            
+            if (isDragging && Math.abs(diffX) > minSwipeDistance) {
+                // Swipe exitoso - cambiar página
                 if (diffX > 0 && currentPage < totalPages) {
                     // Swipe izquierda - siguiente página
                     nextPage();
@@ -648,12 +682,21 @@
                     // Swipe derecha - página anterior
                     previousPage();
                 }
+            } else if (isDragging) {
+                // Swipe insuficiente - volver a la posición original
+                if (currentPageElement) {
+                    currentPageElement.style.transform = 'rotateY(0deg)';
+                }
             }
             
+            // Reset variables
             startX = 0;
             startY = 0;
             isScrolling = false;
-        });
+            isDragging = false;
+            currentPageElement = null;
+            dragDirection = 0;
+        }, { passive: true });
 
         // Navegación con teclado
         document.addEventListener('keydown', (e) => {
@@ -683,6 +726,15 @@
         // Optimización para dispositivos móviles
         if ('ontouchstart' in window) {
             document.body.style.touchAction = 'pan-x';
+            // Prevenir zoom con doble toque
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function (event) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
         }
     </script>
 </body>
